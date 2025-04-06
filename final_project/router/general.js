@@ -75,6 +75,14 @@ if (result.length > 0) {
 //  Get book review
 public_users.get('/review/:isbn',function (req, res) {
   //Write your code here
+  const isbn = req.params.isbn;
+  const book = books[isbn];
+  if (book) {
+    res.send(JSON.stringify(book.reviews, null, 4));
+  } else {
+    res.status(404).json({ message: "Book not found" });
+  }
+
   return res.status(300).json({message: "Yet to be implemented"});
 });
 
